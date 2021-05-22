@@ -8,13 +8,7 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Cloud-practice-51190251 (b24a90a9-e734-447c-8b05-538ec98094ad)'
-    appType: 'webAppLinux'
-    WebAppName: 'WIT-Testing'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -24,3 +18,10 @@ steps:
 - script: |
     npm install -g @angular/cli
   displayName: 'npm install and build'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Cloud-practice-51190251 (b24a90a9-e734-447c-8b05-538ec98094ad)'
+    appType: 'webAppLinux'
+    WebAppName: 'WIT-Testing'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
